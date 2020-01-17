@@ -80,7 +80,6 @@ public class triplet_sum_0 {
 	}
 
 	// O(n^2) sorting
-
 	public static ArrayList<ArrayList<Integer>> method3(int[] arr, int target) {
 
 		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
@@ -117,7 +116,6 @@ public class triplet_sum_0 {
 			}
 
 		}
-
 		return ans;
 
 	}
