@@ -23,13 +23,27 @@ public class quadruplet_sum_0 {
 		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
 		for (int i = 0; i < nums.length - 3; i++) {
 
-			while (i > 0 && i < nums.length && nums[i] == nums[i - 1])
+			while (i > 0 && i < nums.length-1 && nums[i] == nums[i - 1])
 				i++;
+
+			// if the number is too small
+			if (nums[i] + 3 * nums[nums.length - 1] < 0)
+				continue;
+
+			// if the number is too big
+			if (4 * nums[i] > 0)
+				continue;
 
 			for (int j = i + 1; j < nums.length - 2; j++) {
 
 				while (j > i + 1 && j < nums.length && nums[j] == nums[j - 1])
 					j++;
+
+				if (nums[i] + nums[j] + 2 * nums[nums.length - 1] < 0)
+					continue;
+
+				if (nums[i] + 3 * nums[j] > 0)
+					continue;
 
 				int left = j + 1;
 				int right = nums.length - 1;
