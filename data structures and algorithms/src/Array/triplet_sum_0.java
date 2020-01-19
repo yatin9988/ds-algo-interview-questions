@@ -90,6 +90,14 @@ public class triplet_sum_0 {
 				i++;
 			}
 
+			// if the number is too small
+			if (arr[i] + 2 * arr[arr.length - 1] < 0)
+				continue;
+
+			// if the number is too big
+			if (3 * arr[i] > 0)
+				continue;
+
 			int left = i + 1;
 			int right = arr.length - 1;
 			while (left < right) {
@@ -116,6 +124,7 @@ public class triplet_sum_0 {
 			}
 
 		}
+
 		return ans;
 
 	}
