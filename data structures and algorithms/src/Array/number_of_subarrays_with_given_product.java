@@ -1,6 +1,7 @@
 package Array;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class number_of_subarrays_with_given_product {
@@ -15,6 +16,7 @@ public class number_of_subarrays_with_given_product {
 
 		int k = scn.nextInt();
 		System.out.println(method1(arr, k));
+		System.out.println(method2(arr, k));
 	}
 
 	// O(n^2)
@@ -37,6 +39,40 @@ public class number_of_subarrays_with_given_product {
 					l.add(j);
 					list.add(l);
 				}
+			}
+		}
+		return list;
+	}
+
+	// O(n)
+	// hashing
+	public static ArrayList<ArrayList<Integer>> method2(int[] arr, int k) {
+
+		HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+		int prod = 1;
+		ArrayList<Integer> l = new ArrayList<Integer>();
+		l.add(-1);
+		map.put(1, l);
+		for (int i = 0; i < arr.length; i++) {
+			prod *= arr[i];
+			if (map.containsKey(prod / k)) {
+				ArrayList<Integer> ll = map.get(prod / k);
+				for (int index : ll) {
+					ArrayList<Integer> lll = new ArrayList<Integer>();
+					lll.add(index + 1);
+					lll.add(i);
+					list.add(lll);
+				}
+
+			}
+
+			if (map.containsKey(prod)) {
+				ArrayList<Integer> a = map.get(prod);
+				a.add(i);
+			} else {
+				ArrayList<Integer> b = new ArrayList<Integer>();
+				b.add(i);
 			}
 		}
 		return list;
