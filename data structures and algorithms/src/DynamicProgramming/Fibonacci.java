@@ -6,11 +6,34 @@ public class Fibonacci {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		Scanner scn = new Scanner(System.in);
+//		int fibo = scn.nextInt();
+////		System.out.println(fibo_recursive(fibo));
+//		System.out.println(fibo_dp1(fibo, new int[fibo + 1]));
+//		System.out.println(fibo_dp2(fibo));
+//		System.out.println(Byte.MAX_VALUE);
+//		byte b = (byte) 2748;
+//		System.out.println(b);
+//		char ch = 100;
+//		System.out.println(ch);
 		Scanner scn = new Scanner(System.in);
-		int fibo = scn.nextInt();
-//		System.out.println(fibo_recursive(fibo));
-		System.out.println(fibo_dp1(fibo, new int[fibo + 1]));
-		System.out.println(fibo_dp2(fibo));
+
+		int n = scn.nextInt();
+
+		int ans = 0;
+		int pos = 1;
+
+		while (n > 0) {
+
+			int rem = n % 10;
+
+			ans = ans + pos * (int) Math.pow(10, rem - 1);
+
+			pos = pos + 1;
+			n = n / 10;
+		}
+
+		System.out.println(ans);
 	}
 
 	public static int fibo_recursive(int fibo) {

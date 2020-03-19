@@ -17,6 +17,7 @@ public class subarray_with_k_sum {
 		int target = scn.nextInt();
 		System.out.println(method1(arr, target));
 		System.out.println(method2(arr, target));
+		System.out.println(method2(arr, target));
 	}
 
 	// O(n^2) brute-force
@@ -42,7 +43,6 @@ public class subarray_with_k_sum {
 
 	// O(n)
 	// hashing
-
 	public static int method2(int[] arr, int target) {
 
 		int count = 0;
@@ -54,6 +54,29 @@ public class subarray_with_k_sum {
 			if (map.containsKey(sum - target))
 				count += map.get(sum - target);
 			map.put(sum, map.getOrDefault(sum, 0) + 1);
+		}
+		return count;
+	}
+
+	// O(n)
+	public static int method3(int[] arr, int target) {
+
+		int count = 0;
+		int i = 0;
+		int sum = 0;
+		for (int j = 0; j < arr.length; j++) {
+
+			sum += arr[j];
+			if (sum < target)
+				continue;
+
+			while (sum > target) {
+				sum = sum - arr[i];
+				i++;
+			}
+
+			if (sum == target)
+				count++;
 		}
 		return count;
 	}

@@ -90,7 +90,7 @@ public class duplicate_element_in_a_limited_range_array {
 			} else {
 				return Math.abs(arr[i]);
 			}
-		}	
+		}
 		return -1;
 	}
 

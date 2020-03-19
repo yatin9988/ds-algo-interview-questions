@@ -9,7 +9,7 @@ public class AlphaCode {
 		// TODO Auto-generated method stub
 		Scanner scn = new Scanner(System.in);
 		String number = scn.next();
-//		System.out.println(recursive_approach(number));
+		System.out.println(recursive_approach(number));
 		int[] arr = new int[number.length() + 1];
 		Arrays.fill(arr, -1);
 		System.out.println(dp1(number, arr));

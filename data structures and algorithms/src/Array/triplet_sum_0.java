@@ -15,7 +15,6 @@ public class triplet_sum_0 {
 		int[] arr = new int[size];
 		for (int i = 0; i < arr.length; i++)
 			arr[i] = scn.nextInt();
-
 		int target = 0;
 		ArrayList<ArrayList<Integer>> l1 = method1(arr, target);
 		System.out.println(l1);
@@ -25,6 +24,7 @@ public class triplet_sum_0 {
 
 		ArrayList<ArrayList<Integer>> l3 = method3(arr, target);
 		System.out.println(l3);
+
 	}
 
 	// O(n^3) brute force

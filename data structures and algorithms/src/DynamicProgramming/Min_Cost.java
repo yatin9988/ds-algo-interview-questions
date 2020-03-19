@@ -73,7 +73,7 @@ public class Min_Cost {
 			dp[i][dp[0].length - 1] = arr[i][arr[0].length - 1] + dp[i + 1][dp[0].length - 1];
 
 		for (int j = dp[0].length - 2; j >= 0; j--) {
-			dp[dp.length - 1][j] = arr[dp.length - 1][j] + dp[dp.length-1][j + 1];
+			dp[dp.length - 1][j] = arr[dp.length - 1][j] + dp[dp.length - 1][j + 1];
 		}
 
 		for (int i = dp.length - 2; i >= 0; i--) {
