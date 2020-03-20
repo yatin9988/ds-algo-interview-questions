@@ -1,6 +1,7 @@
 package Binary_Tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -375,7 +376,7 @@ public class BinaryTree {
 	}
 
 	public ArrayList<ArrayList<Integer>> level_order() {
-		if(root==null)
+		if (root == null)
 			return new ArrayList<ArrayList<Integer>>();
 		return level_order(root);
 	}
@@ -402,6 +403,86 @@ public class BinaryTree {
 			queue = queue2;
 		}
 		return ans;
+	}
+
+	public ArrayList<ArrayList<Integer>> reverse_level_order1() {
+		if (root == null)
+			return new ArrayList<ArrayList<Integer>>();
+		return reverse_level_order1(root);
+	}
+
+	private ArrayList<ArrayList<Integer>> reverse_level_order1(Node root) {
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<ArrayList<Integer>>();
+		LinkedList<Node> queue = new LinkedList<BinaryTree.Node>();
+		LinkedList<Node> stack = new LinkedList<BinaryTree.Node>();
+		queue.addLast(root);
+		queue.addLast(null);
+		while (!queue.isEmpty()) {
+			Node nn = queue.removeFirst();
+			if (nn == null) {
+				stack.addFirst(null);
+				if (queue.isEmpty())
+					break;
+				queue.add(null);
+				continue;
+			} else {
+				stack.addFirst(nn);
+				if (nn.right != null)
+					queue.addLast(nn.right);
+				if (nn.left != null)
+					queue.addLast(nn.left);
+			}
+		}
+		stack.removeFirst();
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		while (!stack.isEmpty()) {
+			Node nn = stack.removeFirst();
+			if (nn == null) {
+				ans.add(list);
+				list = new ArrayList<Integer>();
+			} else {
+				list.add(nn.data);
+			}
+		}
+		if (list.size() != 0)
+			ans.add(list);
+		return ans;
+	}
+
+	public ArrayList<ArrayList<Integer>> reverse_level_order2() {
+		if (root == null) {
+			ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+			return ans;
+		}
+		HashMap<Integer, ArrayList<Integer>> map = new HashMap<Integer, ArrayList<Integer>>();
+		return reverse_level_order2(root, 1, map);
+	}
+
+	private ArrayList<ArrayList<Integer>> reverse_level_order2(Node root, int level,
+			HashMap<Integer, ArrayList<Integer>> map) {
+
+		preorder(root, level, map);
+		ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+		for (int i = map.size(); i > 0; i--) {
+			ans.add(map.get(i));
+		}
+		return ans;
+	}
+
+	private void preorder(Node root, int level, HashMap<Integer, ArrayList<Integer>> map) {
+		if (root == null)
+			return;
+
+		if (!map.containsKey(level)) {
+			ArrayList<Integer> list = new ArrayList<Integer>();
+			list.add(root.data);
+			map.put(level, list);
+		} else {
+			map.get(level).add(root.data);
+		}
+
+		preorder(root.left, level + 1, map);
+		preorder(root.right, level + 1, map);
 	}
 
 }
